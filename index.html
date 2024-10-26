@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Custom scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e0f7fa;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #6a11cb, #2575fc);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #5e0cbc, #1f6fe0);
+    }
+
+    /* Set height limit for laptops */
+    @media (min-width: 1024px) {
+      body {
+        overflow: hidden;
+      }
+      .container {
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 1rem;
+      }
+      .content-section {
+        padding: 0.5rem;
+      }
+      .text-4xl {
+        font-size: 1.75rem;
+      }
+      .text-5xl {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-r from-blue-100 to-blue-200 min-h-screen flex items-center justify-center">
+  <div class="container bg-white shadow-xl rounded-xl p-8 w-full max-w-lg">
+    <div class="text-center content-section">
+      <i class="fas fa-cloud-sun text-5xl text-blue-500 mb-4"></i>
+      <h1 class="text-4xl font-extrabold text-blue-600 mb-4">Weather Forecast</h1>
+      <p class="text-gray-500">Get real-time weather updates for any city!</p>
+    </div>
+    <div class="mt-8 content-section">
+      <label for="cityInput" class="block text-gray-700 font-medium mb-2">City Name</label>
+      <div class="relative">
+        <input id="cityInput" class="border border-gray-300 rounded-lg w-full p-3 pl-10" type="text" placeholder="Enter city" />
+        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+      </div>
+    </div>
+    <div class="mt-6 flex gap-3 content-section">
+      <button onclick="getWeather()" class="w-1/2 bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2">
+        <i class="fas fa-search-location"></i> Search
+      </button>
+      <button onclick="getWeatherByLocation()" class="w-1/2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 flex items-center justify-center gap-2">
+        <i class="fas fa-map-marker-alt"></i> Current Location
+      </button>
+    </div>
+    <div class="mt-4 content-section">
+      <label for="recentCities" class="block text-gray-700 font-medium mb-2">Recently Searched</label>
+      <select id="recentCities" class="w-full p-3 border border-gray-300 rounded-lg hidden" onchange="getWeatherFromDropdown()">
+        <option value="">Select a city</option>
+      </select>
+    </div>
+    <div id="weatherInfo" class="mt-6 bg-blue-50 p-6 rounded-lg shadow-md text-center content-section">
+      <!-- Weather information with icons will be displayed here -->
+    </div>
+    
+    <!-- Extended Forecast -->
+    <div id="forecast" class="mt-6 bg-blue-50 p-6 rounded-lg shadow-md text-center content-section">
+      <!-- Extended forecast information will be displayed here -->
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
