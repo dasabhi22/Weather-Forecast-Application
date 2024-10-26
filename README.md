@@ -4,8 +4,9 @@
 
 ## Setup Instructions
 
-1. Open the `index.html` file in a browser.
-2. Enter a city name in the input box and click "Search" to get the current weather and 5-day forecast.
+1. Live Link - https://dasabhi22.github.io/Weather-Forecast-Application/
+2. Open the `index.html` file in a browser.
+3. Enter a city name in the input box and click "Search" to get the current weather and 5-day forecast.
 
 ## Usage
 
