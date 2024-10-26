@@ -61,7 +61,33 @@ function fetchForecast(forecastUrl) {
     .then(data => displayForecast(data))
     .catch(error => handleError(error));
 }
-
+function getWeatherByLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  
+        fetch(apiUrl)
+          .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+          })
+          .then(data => {
+            displayWeather(data);
+            fetchForecast(forecastUrl); // Fetch 5-day forecast data
+          })
+          .catch(error => handleError(error));
+      }, error => {
+        alert("Unable to retrieve your location.");
+        console.error("Geolocation error:", error);
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+  
 function displayForecast(data) {
   const forecastContainer = document.getElementById("forecast");
   forecastContainer.innerHTML = ""; // Clear previous forecasts
